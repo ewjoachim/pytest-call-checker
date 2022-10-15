@@ -1,15 +1,10 @@
 # pytest-call-checker
 
 [![Deployed to PyPI](https://img.shields.io/pypi/pyversions/pytest-call-checker?logo=pypi&logoColor=white)](https://pypi.org/pypi/pytest-call-checker)
-
 [![GitHub Repository](https://img.shields.io/github/stars/ewjoachim/pytest-call-checker?logo=github)](https://github.com/ewjoachim/pytest-call-checker/)
-
 [![Continuous Integration](https://img.shields.io/github/workflow/status/ewjoachim/pytest-call-checker/CI?logo=github)](https://github.com/ewjoachim/pytest-call-checker/actions?workflow=CI)
-
 [![Coverage](https://raw.githubusercontent.com/ewjoachim/pytest-call-checker/python-coverage-comment-action-data/badge.svg)](https://github.com/ewjoachim/pytest-call-checker/tree/python-coverage-comment-action-data)
-
 [![MIT License](https://img.shields.io/github/license/ewjoachim/pytest-call-checker?logo=open-source-initiative&logoColor=white)](https://github.com/ewjoachim/pytest-call-checker/blob/main/LICENSE)
-
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/ewjoachim/pytest-call-checker/blob/main/LICENSE/CODE_OF_CONDUCT.md)
 
 
