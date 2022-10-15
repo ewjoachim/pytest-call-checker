@@ -67,7 +67,7 @@ class Checker:
     def _do_call(self, method, args, kwargs) -> Any:
         bound = self._signature(method).bind(*args, **kwargs)
         bound.apply_defaults()
-        request_kwargs = bound.arguments
+        request_kwargs = dict(bound.arguments)
         matches = self._matches
 
         if self.ordered:
@@ -148,7 +148,7 @@ class Checker:
 
     def _register(self, method: str, args: tuple, kwargs: dict):
         bound = self._signature(method).bind(*args, **kwargs)
-        match_kwargs = bound.arguments
+        match_kwargs = dict(bound.arguments)
 
         def _(*resp_args, **resp_kwargs):
 
