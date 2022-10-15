@@ -1,5 +1,7 @@
 # pytest-call-checker
 
+[![Coverage badge](https://raw.githubusercontent.com/ewjoachim/pytest-call-checker/python-coverage-comment-action-data/badge.svg)](https://github.com/ewjoachim/pytest-call-checker/tree/python-coverage-comment-action-data)
+
 `pytest-call-checker` is a pytest plugin providing a `checker` fixture
 that allows creating test doubles with interesting properties.
 
