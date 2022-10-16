@@ -13,12 +13,12 @@ that allows creating test doubles with interesting properties.
 
 ## Stating the problem
 
-Imagine you're testing a library that makes HTTP calls to an API. If you follow
-usual practices of separating I/O from logic (dependency injection), chances
-are that the code functions you will test will receive a HTTP client object and
-will route HTTP calls to this object. The idea being that in real context, they
-will receive a real HTTP client, and in test code, they will receive a fake
-client that will not actually perform HTTP calls.
+Imagine you're writing a library that makes HTTP calls to an API. If you follow
+usual practices of separating I/O from logic, chances are you will use some
+form of dependency injection: the functions you will write will receive a HTTP
+client object and will route HTTP calls to this object. The idea being that in
+real context, they will receive a real HTTP client, and in test code, they will
+receive a fake client that will not actually perform HTTP calls.
 
 This fake client is a test double. What you'll usually want to check is that:
 
