@@ -43,7 +43,6 @@ def test_pass__kwargs(fake_system):
 
 
 def test_fail__no_register(fake_system):
-
     with pytest.raises(
         AssertionError,
         match=re.escape(
@@ -237,7 +236,6 @@ def test_methods__pass__kwargs(fake_system4):
 
 
 def test_methods__fail__no_register(fake_system4):
-
     with pytest.raises(
         AssertionError,
         match=re.escape(

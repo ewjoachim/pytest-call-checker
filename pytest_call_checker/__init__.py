@@ -151,7 +151,6 @@ class Checker:
         match_kwargs = dict(bound.arguments)
 
         def _(*resp_args, **resp_kwargs):
-
             self._matches.append(
                 Match(
                     method=method,
