@@ -21,8 +21,7 @@ def system(foo: int, bar: int = 3):
 @pytest.fixture
 def fake_system(checker):
     class FakeSystem(checker.Checker):
-        def call(self, foo: int, bar: int = 4):
-            ...
+        def call(self, foo: int, bar: int = 4): ...
 
         def response(self, baz: int, qux="something"):
             return SystemResult(baz=baz, qux=qux)
