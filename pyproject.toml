@@ -12,11 +12,6 @@ readme = "README.md"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "License :: OSI Approved :: MIT License",
 ]
 keywords = ["pytest"]
@@ -27,33 +22,22 @@ packages = [{include = "pytest_call_checker"}]
 pytest_call_checker = "pytest_call_checker"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 pytest = "^7.1.3"
 
 [tool.poetry.group.lint.dependencies]
-black = "^22.10.0"
-isort = "^5.10.1"
-
+ruff = "*"
+pyright = "*"
 
 [tool.poetry.group.tests.dependencies]
-pytest-cov = "^4.0.0"
-
+pytest-cov = "*"
 
 [tool.poetry.group.example.dependencies]
-httpx = "^0.23.0"
+httpx = "*"
 
 [tool.poetry-dynamic-versioning]
 enable = true
 pattern = '(?P<base>\d+\.\d+\.\d+)'
-
-[tool.isort]
-profile = "black"
-known_first_party = "pytest_call_checker"
-add_imports = "__future__.annotations"
-
-[tool.doc8]
-max-line-length = 88
-ignore-path = "docs/_build"
 
 [tool.pytest.ini_options]
 addopts = """
@@ -62,12 +46,6 @@ addopts = """
 """
 testpaths = ["tests"]
 
-[tool.mypy]
-no_implicit_optional = true
-
-[tool.coverage.run]
-relative_files = true
-
 [tool.coverage.report]
 exclude_lines = [
     "raise NotImplementedError",
@@ -75,3 +53,28 @@ exclude_lines = [
     "if TYPE_CHECKING:",
     "^ +\\.\\.\\.$",
 ]
+
+[tool.ruff]
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+extend-select = [
+    "UP",  # pyupgrade
+    "I",   # isort
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "RUF", # ruff
+]
+fixable = ["ALL"]
+extend-ignore = [
+    "E501", # line too long
+    # It's not exactly false but it's not supported enough by our dependencies,
+    # so ruff is fighting with Pyright on this.
+    "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`
+]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+
+[tool.pyright]
+exclude = ["tests", ".venv"]

@@ -26,7 +26,7 @@ class NoMatch(Exception):
 class Match:
     method: str
     match_kwargs: dict
-    response_args: dict
+    response_args: tuple
     response_kwargs: dict
 
     def __str__(self):
@@ -146,7 +146,7 @@ class Checker:
     def register(self):
         return Registerer(checker=self)
 
-    def _register(self, method: str, args: tuple, kwargs: dict):
+    def _register(self, method: str, args: tuple, kwargs: dict) -> Callable:
         bound = self._signature(method).bind(*args, **kwargs)
         match_kwargs = dict(bound.arguments)
 
@@ -203,7 +203,7 @@ def checker(request):
         instances.append(checker)
         return checker
 
-    _.Checker = Checker
+    _.Checker = Checker  # type: ignore
     yield _
     if request.node.test_status.passed:
         for instance in instances:
