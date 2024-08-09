@@ -26,13 +26,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install poetry
         run: pipx install poetry
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "${{ matrix.python-version }}"
           cache: "poetry"
@@ -49,10 +49,42 @@ jobs:
           COVERAGE_FILE: ".coverage.${{ matrix.python-version }}"
 
       - name: Store coverage file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: .coverage.${{ matrix.python-version }}
+
+  static-typing:
+    name: Run Pyright
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - uses: actions/setup-python@v5
+        with:
+          cache: "poetry"
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Install dependencies
+        run: poetry install --all-extras
+
+      - name: Activate virtualenv
+        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+
+      - name: Extract pyright version from pre-commit
+        id: pre-commit-pyright-version
+        run: >
+          yq '.repos
+          | filter(.repo == "https://github.com/RobertCraigie/pyright-python").0.rev
+          | "pyright-version="+sub("^v", "")'
+          .pre-commit-config.yaml >> $GITHUB_OUTPUT
+
+      - uses: jakebailey/pyright-action@v2
+        with:
+          version: ${{ steps.pre-commit-pyright-version.outputs.pyright-version }}
+
 
   report-status:
     name: success

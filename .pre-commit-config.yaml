@@ -1,4 +1,5 @@
 ci:
+  skip: [pyright]
   autoupdate_schedule: quarterly
 
 repos:
