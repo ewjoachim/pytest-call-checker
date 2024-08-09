@@ -54,6 +54,9 @@ exclude_lines = [
     "^ +\\.\\.\\.$",
 ]
 
+[tool.coverage.run]
+relative_files = true
+
 [tool.ruff]
 extend-exclude = [".venv"]
 
